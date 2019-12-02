@@ -7,6 +7,18 @@
 
 namespace cmpl {
   enum class TokType {
+    // used as value of fsm states that do not represent a valid token
+    t_null,
+
+    // generic, unassigned token type. Temporarily assigned to contextful tokens
+    t_generic,
+
+    // formatting and blocks
+    t_semicolon,
+    t_curly_left,
+    t_curly_right,
+
+    //reserved keywords
     t_if,
     t_else,
     t_while,
@@ -15,13 +27,18 @@ namespace cmpl {
     t_continue,
     t_return,
 
+    // variables
     t_ident,
     t_literal,
 
+    // variable declaration and assignment
     t_type,
     t_array, // []
     t_assign,
+    t_bracket_left,
+    t_bracket_right,
 
+    // binary operators
     t_plus,
     t_minus,
     t_multiply,
@@ -38,6 +55,7 @@ namespace cmpl {
     t_bitwise_and,
     t_bitwise_or,
 
+    // unary operators
     t_not,
     t_bitwise_not,
     t_reference,
