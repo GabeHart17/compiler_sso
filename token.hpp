@@ -29,7 +29,10 @@ namespace cmpl {
 
     // variables
     t_ident,
-    t_literal,
+    t_literal_char,
+    t_literal_string,
+    t_literal_int,
+    t_literal_float,
 
     // variable declaration and assignment
     t_type,
