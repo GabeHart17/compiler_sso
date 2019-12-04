@@ -8,17 +8,15 @@ lexer built using fsm2
 #ifndef LEXER2_HEADER
 #define LEXER2_HEADER
 
-namespace cmpl {
 
-  class Lexer2 {
-  private:
-    /* data */
+class Lexer2 {
+private:
+  /* data */
 
-  public:
-    Lexer2 (arguments);
-    virtual ~Lexer2 ();
-  };
+public:
+  Lexer2 (arguments);
+  virtual ~Lexer2 ();
+};
 
-} /* cmpl */
 
 #endif
