@@ -43,23 +43,23 @@ public:
 };
 
 
-class IncludedTransition : public FSMTransition {
+class IncludeTransition : public FSMTransition {
 private:
   std::string acceptable_;
   bool accepts(char);
 
 public:
-  IncludedTransition(size_t, size_t, std::string);
+  IncludeTransition(size_t, size_t, std::string);
 };
 
 
-class ExcludedTransition : public FSMTransition {
+class ExcludeTransition : public FSMTransition {
 private:
   std::string unacceptable_;
   bool accepts(char);
 
 public:
-  ExcludedTransition(size_t, size_t, std::string);
+  ExcludeTransition(size_t, size_t, std::string);
 };
 
 

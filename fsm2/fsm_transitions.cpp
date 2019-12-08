@@ -45,22 +45,22 @@ SingleTransition::SingleTransition(size_t self, size_t next, char cond) {
 }
 
 
-bool IncludedTransition::accepts(char c) {
+bool IncludeTransition::accepts(char c) {
   return acceptable_.find(c) != std::string::npos;
 }
 
-IncludedTransition::IncludedTransition(size_t self, size_t next, std::string chars) {
+IncludeTransition::IncludeTransition(size_t self, size_t next, std::string chars) {
   self_ = self;
   next_ = next;
   acceptable_ = chars;
 }
 
 
-bool ExcludedTransition::accepts(char c) {
+bool ExcludeTransition::accepts(char c) {
   return unacceptable_.find(c) == std::string::npos;
 }
 
-ExcludedTransition::ExcludedTransition(size_t self, size_t next, std::string chars) {
+ExcludeTransition::ExcludeTransition(size_t self, size_t next, std::string chars) {
   self_ = self;
   next_ = next;
   unacceptable_ = chars;
