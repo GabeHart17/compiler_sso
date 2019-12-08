@@ -17,7 +17,7 @@ protected:
 
 public:
   FSMTransition(size_t, size_t);
-  ~FSMTransition();
+  ~FSMTransition() {}
   size_t self();
   size_t next();
   size_t attempt(char c);

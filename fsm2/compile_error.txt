@@ -1,0 +1,52 @@
+fsm_transitions.cpp: In constructor ‘AnyTransition::AnyTransition(size_t, size_t)’:
+fsm_transitions.cpp:31:54: error: no matching function for call to ‘FSMTransition::FSMTransition()’
+ AnyTransition::AnyTransition(size_t self, size_t next) {
+                                                      ^
+fsm_transitions.cpp:6:1: note: candidate: FSMTransition::FSMTransition(size_t, size_t)
+ FSMTransition::FSMTransition(size_t self, size_t next) {
+ ^~~~~~~~~~~~~
+fsm_transitions.cpp:6:1: note:   candidate expects 2 arguments, 0 provided
+In file included from fsm_transitions.cpp:3:0:
+fsm_transitions.hpp:9:7: note: candidate: constexpr FSMTransition::FSMTransition(const FSMTransition&)
+ class FSMTransition {
+       ^~~~~~~~~~~~~
+fsm_transitions.hpp:9:7: note:   candidate expects 1 argument, 0 provided
+fsm_transitions.cpp: In constructor ‘SingleTransition::SingleTransition(size_t, size_t, char)’:
+fsm_transitions.cpp:41:71: error: no matching function for call to ‘FSMTransition::FSMTransition()’
+ SingleTransition::SingleTransition(size_t self, size_t next, char cond) {
+                                                                       ^
+fsm_transitions.cpp:6:1: note: candidate: FSMTransition::FSMTransition(size_t, size_t)
+ FSMTransition::FSMTransition(size_t self, size_t next) {
+ ^~~~~~~~~~~~~
+fsm_transitions.cpp:6:1: note:   candidate expects 2 arguments, 0 provided
+In file included from fsm_transitions.cpp:3:0:
+fsm_transitions.hpp:9:7: note: candidate: constexpr FSMTransition::FSMTransition(const FSMTransition&)
+ class FSMTransition {
+       ^~~~~~~~~~~~~
+fsm_transitions.hpp:9:7: note:   candidate expects 1 argument, 0 provided
+fsm_transitions.cpp: In constructor ‘IncludeTransition::IncludeTransition(size_t, size_t, std::__cxx11::string)’:
+fsm_transitions.cpp:52:81: error: no matching function for call to ‘FSMTransition::FSMTransition()’
+ IncludeTransition::IncludeTransition(size_t self, size_t next, std::string chars) {
+                                                                                 ^
+fsm_transitions.cpp:6:1: note: candidate: FSMTransition::FSMTransition(size_t, size_t)
+ FSMTransition::FSMTransition(size_t self, size_t next) {
+ ^~~~~~~~~~~~~
+fsm_transitions.cpp:6:1: note:   candidate expects 2 arguments, 0 provided
+In file included from fsm_transitions.cpp:3:0:
+fsm_transitions.hpp:9:7: note: candidate: constexpr FSMTransition::FSMTransition(const FSMTransition&)
+ class FSMTransition {
+       ^~~~~~~~~~~~~
+fsm_transitions.hpp:9:7: note:   candidate expects 1 argument, 0 provided
+fsm_transitions.cpp: In constructor ‘ExcludeTransition::ExcludeTransition(size_t, size_t, std::__cxx11::string)’:
+fsm_transitions.cpp:63:81: error: no matching function for call to ‘FSMTransition::FSMTransition()’
+ ExcludeTransition::ExcludeTransition(size_t self, size_t next, std::string chars) {
+                                                                                 ^
+fsm_transitions.cpp:6:1: note: candidate: FSMTransition::FSMTransition(size_t, size_t)
+ FSMTransition::FSMTransition(size_t self, size_t next) {
+ ^~~~~~~~~~~~~
+fsm_transitions.cpp:6:1: note:   candidate expects 2 arguments, 0 provided
+In file included from fsm_transitions.cpp:3:0:
+fsm_transitions.hpp:9:7: note: candidate: constexpr FSMTransition::FSMTransition(const FSMTransition&)
+ class FSMTransition {
+       ^~~~~~~~~~~~~
+fsm_transitions.hpp:9:7: note:   candidate expects 1 argument, 0 provided
