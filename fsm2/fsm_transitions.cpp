@@ -28,9 +28,8 @@ bool AnyTransition::accepts(char c) {
   return true;
 }
 
-AnyTransition::AnyTransition(size_t self, size_t next) {
-  self_ = self;
-  next_ = next;
+AnyTransition::AnyTransition(size_t self, size_t next)
+  : FSMTransition(self, next) {
 }
 
 
@@ -38,10 +37,9 @@ bool SingleTransition::accepts(char c) {
   return c == condition_;
 }
 
-SingleTransition::SingleTransition(size_t self, size_t next, char cond) {
+SingleTransition::SingleTransition(size_t self, size_t next, char cond)
+  : FSMTransition(self, next) {
   condition_ = cond;
-  self_ = self;
-  next_ = next;
 }
 
 
@@ -49,9 +47,8 @@ bool IncludeTransition::accepts(char c) {
   return acceptable_.find(c) != std::string::npos;
 }
 
-IncludeTransition::IncludeTransition(size_t self, size_t next, std::string chars) {
-  self_ = self;
-  next_ = next;
+IncludeTransition::IncludeTransition(size_t self, size_t next, std::string chars)
+  :FSMTransition(self, next) {
   acceptable_ = chars;
 }
 
@@ -60,8 +57,7 @@ bool ExcludeTransition::accepts(char c) {
   return unacceptable_.find(c) == std::string::npos;
 }
 
-ExcludeTransition::ExcludeTransition(size_t self, size_t next, std::string chars) {
-  self_ = self;
-  next_ = next;
+ExcludeTransition::ExcludeTransition(size_t self, size_t next, std::string chars)
+  :FSMTransition(self, next){
   unacceptable_ = chars;
 }

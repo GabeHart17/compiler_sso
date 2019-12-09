@@ -11,7 +11,6 @@ private:
   virtual bool accepts(char c) {
     return false;
   }
-protected:
   size_t self_;  // index of state to which this transition belongs
   size_t next_;  // index of next state
 
