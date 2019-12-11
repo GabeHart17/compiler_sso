@@ -6,8 +6,8 @@
 
 
 namespace cmpl {
-  enum class TokType {
-    // used as value of fsm states that do not represent a valid token
+  enum class TokenType {
+    // used for invalid tokens
     t_null,
 
     // generic, unassigned token type. Temporarily assigned to contextful tokens
@@ -17,6 +17,9 @@ namespace cmpl {
     t_semicolon,
     t_curly_left,
     t_curly_right,
+    t_paren_left,
+    t_paren_right,
+    t_coma,
 
     //reserved keywords
     t_if,
@@ -26,6 +29,11 @@ namespace cmpl {
     t_break,
     t_continue,
     t_return,
+
+    // type names
+    t_char,
+    t_int,
+    t_float,
 
     // variables
     t_ident,
@@ -68,11 +76,11 @@ namespace cmpl {
 
   class Token {
   private:
-    TokType type;
+    TokenType type;
     std::string lexeme;
 
   public:
-    Token (TokType t, std::string l) {
+    Token (TokenType t, std::string l) {
       type = t;
       lexeme = l;
     }
