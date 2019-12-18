@@ -16,12 +16,11 @@ private:
    std::vector<token_regex> regexes_;
 
 public:
-  RegexTokenizer();
   RegexTokenizer(std::vector<token_regex>);
-  ~RegexTokenizer();
+  ~RegexTokenizer() {}
 
   Token get_token(const std::string&);
-}
+};
 
 
 RegexTokenizer::RegexTokenizer(std::vector<token_regex> t_vec) {

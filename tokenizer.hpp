@@ -13,7 +13,7 @@ class Tokenizer {
 private:
   RegexTokenizer* rt_;
   std::vector<Token> first_pass(std::string);
-  void second_pass(std::vector<Token>&);
+  std::vector<Token> second_pass(const std::vector<Token>&);
 
 public:
   Tokenizer ();
@@ -31,8 +31,9 @@ Tokenizer::~Tokenizer() {
   delete rt_;
 }
 
+
 std::vector<Token> Tokenizer::first_pass(std::string str) {
-  std::vector<Token> tokens();
+  std::vector<Token> tokens;
   Token t;
   size_t pos = 0;
   while (pos < str.length()){
@@ -41,6 +42,16 @@ std::vector<Token> Tokenizer::first_pass(std::string str) {
     pos += t.get_lexeme().length();
   }
   return tokens;
+}
+
+
+std::vector<Token> Tokenizer::second_pass(const std::vector<Token>& first_res) {
+  return first_res;
+}
+
+
+std::vector<Token> Tokenizer::tokenize(std::string str) {
+  return second_pass(first_pass(str));
 }
 
 

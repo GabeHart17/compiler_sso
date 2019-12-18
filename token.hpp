@@ -85,7 +85,7 @@ public:
     type = t;
     lexeme = l;
   }
-  ~Token ();
+  ~Token () {}
 
   TokenType get_type() {
     return type;
