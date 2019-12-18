@@ -1,3 +1,6 @@
+#ifndef REGEX_TOKENIZER_HEADER
+#define REGEX_TOKENIZER_HEADER
+
 #include "token.hpp"
 #include <vector>
 #include <utility>
@@ -5,11 +8,7 @@
 #include <string>
 
 
-#ifndef REGEX_TOKENIZER_HEADER
-#define REGEX_TOKENIZER_HEADER
-
-
-typedef token_regex std::pair<TokenType, std::regex>;
+typedef std::pair<TokenType, std::regex> token_regex;
 
 
 class RegexTokenizer {
@@ -21,7 +20,7 @@ public:
   RegexTokenizer(std::vector<token_regex>);
   ~RegexTokenizer();
 
-  Token get_token(std::string);
+  Token get_token(const std::string&);
 }
 
 
@@ -30,13 +29,15 @@ RegexTokenizer::RegexTokenizer(std::vector<token_regex> t_vec) {
 }
 
 
-Token RegexTokenizer::get_token(std::string str) {
+Token RegexTokenizer::get_token(const std::string& str) {
   std::vector<TokenType> candidates;
   std::vector<TokenType> old_candidates;
+  std::string sub = "";
   std::string old_sub = "";
-  for (size_t i = 1; i <= regexes_.size(); i++) {
+  for (size_t i = 1; i <= str.size(); i++) {
     old_candidates = candidates;
     old_sub = sub;
+    sub = str.substr(i);
     candidates.clear();
     std::string sub = str.substr(0, i);
     for (token_regex r : regexes_) {

@@ -1,14 +1,12 @@
+#ifndef TOKENIZER_HEADER
+#define TOKENIZER_HEADER
+
 #include "token.hpp"
 #include "regex_tokenizer.hpp"
 #include "create_tokenizer.hpp"
 #include <vector>
-#include <pair>
+#include <utility>
 #include <string>
-
-
-
-#ifndef TOKENIZER_HEADER
-#define TOKENIZER_HEADER
 
 
 class Tokenizer {
@@ -31,6 +29,18 @@ Tokenizer::Tokenizer() {
 
 Tokenizer::~Tokenizer() {
   delete rt_;
+}
+
+std::vector<Token> Tokenizer::first_pass(std::string str) {
+  std::vector<Token> tokens();
+  Token t;
+  size_t pos = 0;
+  while (pos < str.length()){
+    t = rt_ -> get_token(str.substr(pos));
+    tokens.push_back(t);
+    pos += t.get_lexeme().length();
+  }
+  return tokens;
 }
 
 

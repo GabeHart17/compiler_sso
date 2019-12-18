@@ -1,3 +1,6 @@
+#ifndef CREATE_TOKENIZER_HEADER
+#define CREATE_TOKENIZER_HEADER
+
 #include "tokenizer.hpp"
 #include "token.hpp"
 #include <string>
@@ -6,12 +9,8 @@
 #include <regex>
 
 
-#ifndef CREATE_TOKENIZER_HEADER
-#define CREATE_TOKENIZER_HEADER
-
-
-RegexTokenizer* make_tokenizer() {
-  std::vector<token_regex> vec();
+RegexTokenizer* create_tokenizer() {
+  std::vector<token_regex> vec;
   const std::string keywords[] {
     "if",
     "else",
@@ -67,7 +66,7 @@ RegexTokenizer* make_tokenizer() {
     TokenType::t_less_than,
     TokenType::t_not,
     TokenType::t_bitwise_or,
-    TokenType::generic,
+    TokenType::t_generic,
     TokenType::t_and,
     TokenType::t_generic,
     TokenType::t_divide,
@@ -92,7 +91,7 @@ RegexTokenizer* make_tokenizer() {
     TokenType::t_bracket_left,
     TokenType::t_bracket_right,
     TokenType::t_coma,
-    TokenType::t_semicolon;
+    TokenType::t_semicolon
   };
 
   for (size_t i = 0; i < 7; i++) {
@@ -108,7 +107,7 @@ RegexTokenizer* make_tokenizer() {
   }
 
   for (size_t i = 0; i < 8; i++) {
-    vec.push_back(token_regex(control[i], std::regex("\\s" + control_tokens[i] + "\\s")));
+    vec.push_back(token_regex(control_tokens[i], std::regex("\\s" + control[i] + "\\s")));
   }
 
   // string literals
@@ -121,10 +120,10 @@ RegexTokenizer* make_tokenizer() {
   vec.push_back(token_regex(TokenType::t_literal_int, "\\s\\d+\\s"));
 
   // float literals
-  vec.push_back(token_regex(TokenType::t_literal_float, "(\\d*\.\\d+)|\\d+\.")));
+  vec.push_back(token_regex(TokenType::t_literal_float, "(\\d*\\.\\d+)|\\d+\\."));
 
   // identifiers
-  vec.push_back(token_regex(TokenType::t_ident, "\\w(\\w|\d)*"));
+  vec.push_back(token_regex(TokenType::t_ident, "\\w(\\w|\\d)*"));
 
   RegexTokenizer* rt = new RegexTokenizer(vec);
   return rt;
