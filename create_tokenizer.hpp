@@ -96,32 +96,32 @@ RegexTokenizer* make_tokenizer() {
   };
 
   for (size_t i = 0; i < 7; i++) {
-    vec.push_back(token_regex(keyword_tokens[i], std::regex(keywords[i])));
+    vec.push_back(token_regex(keyword_tokens[i], std::regex("\\s" + keywords[i] + "\\s")));
   }
 
   for (size_t i = 0; i < 3; i++) {
-    vec.push_back(token_regex(type_tokens[i], std::regex(types[i])));
+    vec.push_back(token_regex(type_tokens[i], std::regex("\\s" + types[i] + "\\s")));
   }
 
   for (size_t i = 0; i < 15; i++) {
-    vec.push_back(token_regex(operator_tokens[i], std::regex(operators[i])));
+    vec.push_back(token_regex(operator_tokens[i], std::regex("\\s" + operators[i] + "\\s")));
   }
 
   for (size_t i = 0; i < 8; i++) {
-    vec.push_back(token_regex(control[i], std::regex(control_tokens[i])));
+    vec.push_back(token_regex(control[i], std::regex("\\s" + control_tokens[i] + "\\s")));
   }
 
   // string literals
-  vec.push_back(token_regex(TokenType::t_literal_string, "\".*\""));
+  vec.push_back(token_regex(TokenType::t_literal_string, "\\s*\"([^\\\"]|(\\[\\\"abefnrtv]))*\"\\s*"));
 
   // char literals
-  vec.push_back(token_regex(TokenType::t_literal_char, "'.'"));
+  vec.push_back(token_regex(TokenType::t_literal_char, "\\s'([^\\\']|(\\[\\\"abefnrtv]))'\\s"));
 
   // int literals
-  vec.push_back(token_regex(TokenType::t_literal_int, "\\d+"));
+  vec.push_back(token_regex(TokenType::t_literal_int, "\\s\\d+\\s"));
 
   // float literals
-  vec.push_back(token_regex(TokenType::t_literal_float, "\d+\.\d+")));
+  vec.push_back(token_regex(TokenType::t_literal_float, "(\\d*\.\\d+)|\\d+\.")));
 
   // identifiers
   vec.push_back(token_regex(TokenType::t_ident, "\\w(\\w|\d)*"));
