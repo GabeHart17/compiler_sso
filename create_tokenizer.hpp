@@ -9,6 +9,7 @@
 #include <regex>
 
 
+
 RegexTokenizer* create_tokenizer() {
   std::vector<token_regex> vec;
   const std::string keywords[] {
@@ -114,7 +115,7 @@ RegexTokenizer* create_tokenizer() {
   vec.push_back(token_regex(TokenType::t_literal_string, "\\s*\"([^\\\"]|(\\[\\\"abefnrtv]))*\"\\s*"));
 
   // char literals
-  vec.push_back(token_regex(TokenType::t_literal_char, "\\*s'([^\\\']|(\\[\\\"abefnrtv]))'\\s*"));
+  vec.push_back(token_regex(TokenType::t_literal_char, "\\*s'([^\\\']|(\\[\\'abefnrtv]))'\\s*"));
 
   // int literals
   vec.push_back(token_regex(TokenType::t_literal_int, "\\s*\\d+\\s*"));

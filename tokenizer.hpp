@@ -47,6 +47,7 @@ std::vector<Token> Tokenizer::first_pass(std::string str) {
 
 
 std::vector<Token> Tokenizer::second_pass(const std::vector<Token>& first_res) {
+  /*
   std::vector<Token> second_res;
   Token context;
   for (Token t : first_res) {
@@ -60,6 +61,7 @@ std::vector<Token> Tokenizer::second_pass(const std::vector<Token>& first_res) {
       }
     }
   }
+  */
   return first_res;
 }
 
