@@ -15,6 +15,13 @@ private:
   RegexTokenizer* rt_;
   std::vector<Token> first_pass(std::string);
   std::vector<Token> second_pass(const std::vector<Token>&);
+  static std::string strip_(const std::string& s) {
+    std::string whitespace = " \f\n\r\t\v";
+    size_t f = s.find_first_not_of(whitespace);
+    size_t l = s.find_last_not_of(whitespace);
+    unsigned int len = l - f + 1;
+    return s.substr(f, len);
+  }
 
 public:
   Tokenizer ();
@@ -47,22 +54,28 @@ std::vector<Token> Tokenizer::first_pass(std::string str) {
 
 
 std::vector<Token> Tokenizer::second_pass(const std::vector<Token>& first_res) {
-  /*
   std::vector<Token> second_res;
+  second_res.reserve(first_res.size());
+
   Token context;
-  for (Token t : first_res) {
-    if (t.get_type() == TokenType::t_generic) {
-      if (std::regex_match(t.get_lexeme(), std::regex("\\s*\\*\\s*"))) {
-        if (context == TokenType::t_ident ||
-            context == TokenType::t_paren_right ||
-            context == TokenType::t_bracket_right) {
-              second_res.push_back(Token(TokenType::t_multiply, "*"));
-            }
-      }
-    }
+  Token current;
+  if (first_res.size() > 0) {
+    Token t(first_res[0].get_type(), strip_(first_res[0].get_lexeme()));
+    second_res.push_back(t);
   }
-  */
-  return first_res;
+
+  for (size_t i = 1; i < first_res.size(); i++) {
+    context = second_res[i - 1];
+    current = first_res[i];
+    std::string l = strip_(current.get_lexeme());
+
+
+
+    Token t(current.get_type(), l);
+    second_res.push_back(t);
+  }
+
+  return second_res;
 }
 
 

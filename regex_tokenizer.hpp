@@ -14,7 +14,6 @@ typedef std::pair<TokenType, std::regex> token_regex;
 class RegexTokenizer {
 private:
    std::vector<token_regex> regexes_;
-   std::string strip_(std::string);
 
 public:
   RegexTokenizer(std::vector<token_regex>);
@@ -26,15 +25,6 @@ public:
 
 RegexTokenizer::RegexTokenizer(std::vector<token_regex> t_vec) {
   regexes_ = t_vec;
-}
-
-
-std::string RegexTokenizer::strip_(std::string s) {
-  std::string whitespace = " \f\n\r\t\v";
-  size_t f = s.find_first_not_of(whitespace);
-  size_t l = s.find_last_not_of(whitespace);
-  unsigned int len = l - f;
-  return s.substr(f, len);
 }
 
 

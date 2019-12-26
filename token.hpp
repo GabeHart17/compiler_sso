@@ -95,11 +95,11 @@ public:
   }
   ~Token () {}
 
-  TokenType get_type() {
+  TokenType get_type() const {
     return type;
   }
 
-  std::string get_lexeme() {
+  std::string get_lexeme() const {
     return lexeme;
   }
 };
