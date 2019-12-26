@@ -73,7 +73,9 @@ enum class TokenType {
   t_not,
   t_bitwise_not,
   t_reference,
-  t_dereference
+  t_dereference,
+  t_increment,
+  t_decrement
 };
 
 

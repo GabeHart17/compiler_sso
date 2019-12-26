@@ -55,7 +55,9 @@ RegexTokenizer* create_tokenizer() {
     "\\*",
     "/",
     "\\+",
-    "-"
+    "-",
+    "\\+\\+",
+    "--"
   };
   const TokenType operator_tokens[] {
     TokenType::t_assign,
@@ -72,7 +74,9 @@ RegexTokenizer* create_tokenizer() {
     TokenType::t_generic,
     TokenType::t_divide,
     TokenType::t_plus,
-    TokenType::t_minus
+    TokenType::t_minus,
+    TokenType::t_increment,
+    TokenType::t_decrement
   };
   const std::string control[] {
     "\\{",
@@ -103,7 +107,7 @@ RegexTokenizer* create_tokenizer() {
     vec.push_back(token_regex(type_tokens[i], std::regex("\\s*" + types[i] + "\\s*")));
   }
 
-  for (size_t i = 0; i < 15; i++) {
+  for (size_t i = 0; i < 17; i++) {
     vec.push_back(token_regex(operator_tokens[i], std::regex("\\s*" + operators[i] + "\\s*")));
   }
 
