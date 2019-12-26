@@ -58,6 +58,10 @@ Token RegexTokenizer::get_token(const std::string& str) {
       return t;
     }
   }
+  if (candidates.size() != 0) {
+    Token t(candidates[0], sub);
+    return t;
+  }
   Token t(TokenType::t_null, old_sub);
   return t;
 }
