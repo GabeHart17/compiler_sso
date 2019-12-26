@@ -32,12 +32,18 @@ enum class TokenType {
   t_int,
   t_float,
 
-  // variables
+  // identifiers
   t_ident,
+
+  // literals
   t_literal_char,
   t_literal_string,
   t_literal_int,
   t_literal_float,
+
+  // partial literals. needed for first pass, but will never appear in output
+  t_literal_char_start  // excludes closing '
+  t_literal_string_start  // excludes closing "
 
   // variable declaration and assignment
   t_type,

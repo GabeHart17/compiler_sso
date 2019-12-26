@@ -113,9 +113,11 @@ RegexTokenizer* create_tokenizer() {
 
   // string literals
   vec.push_back(token_regex(TokenType::t_literal_string, "\\s*\"([^\\\"]|(\\[\\\"abefnrtv]))*\"\\s*"));
+  vec.push_back(token_regex(TokenType::t_literal_string_start, "\\s*\"([^\\\"]|(\\[\\\"abefnrtv]))*"));
 
   // char literals
   vec.push_back(token_regex(TokenType::t_literal_char, "\\*s'([^\\\']|(\\[\\'abefnrtv]))'\\s*"));
+  vec.push_back(token_regex(TokenType::t_literal_char_start, "\\*s'([^\\\']|(\\[\\'abefnrtv]))"));
 
   // int literals
   vec.push_back(token_regex(TokenType::t_literal_int, "\\s*\\d+\\s*"));
