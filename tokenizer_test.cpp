@@ -4,7 +4,8 @@
 #include <fstream>
 #include <sstream>
 
-#include "lexer.hpp"
+#include "tokenizer.hpp"
+#include "token.hpp"
 
 
 int main(int argc, char const *argv[]) {
@@ -26,10 +27,10 @@ int main(int argc, char const *argv[]) {
     }
 
     std::string str = in_stream.str();
-    cmpl::Lexer lx;
-    std::vector<std::string> lexemes = lx.lex(str);
-    for (size_t i = 0; i < lexemes.size(); i++) {
-      std::cout << lexemes[i] << std::endl;
+    Tokenizer tk;
+    std::vector<Token> tokens = tk.tokenize(str);
+    for (Token t : tokens) {
+      std::cout << t.get_lexeme() << '\n';
     }
   }
 
