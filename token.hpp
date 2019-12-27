@@ -28,6 +28,7 @@ enum class TokenType {
   t_return,
 
   // type names
+  t_bool,
   t_char,
   t_int,
   t_float,
@@ -36,6 +37,7 @@ enum class TokenType {
   t_ident,
 
   // literals
+  t_literal_bool,
   t_literal_char,
   t_literal_string,
   t_literal_int,
@@ -81,26 +83,32 @@ enum class TokenType {
 
 class Token {
 private:
-  TokenType type;
-  std::string lexeme;
+  TokenType type_;
+  std::string lexeme_;
 
 public:
   Token() {
-    type = TokenType::t_generic;
-    lexeme = "";
+    type_ = TokenType::t_generic;
+    lexeme_ = "";
   }
   Token (TokenType t, std::string l) {
-    type = t;
-    lexeme = l;
+    type_ = t;
+    lexeme_ = l;
   }
   ~Token () {}
 
   TokenType get_type() const {
-    return type;
+    return type_;
   }
 
   std::string get_lexeme() const {
-    return lexeme;
+    return lexeme_;
+  }
+
+  bool is_type() {  // if this token names a type
+    return type == TokenType::t_char ||
+           type == TokenType::t_float ||
+           type == TokenType::t_int;
   }
 };
 

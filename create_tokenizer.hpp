@@ -31,11 +31,13 @@ RegexTokenizer* create_tokenizer() {
     TokenType::t_return
   };
   const std::string types[] {
+    "bool",
     "char",
     "int",
     "float"
   };
   const TokenType type_tokens[] {
+    TokenType::t_bool,
     TokenType::t_char,
     TokenType::t_int,
     TokenType::t_float
@@ -114,6 +116,9 @@ RegexTokenizer* create_tokenizer() {
   for (size_t i = 0; i < 8; i++) {
     vec.push_back(token_regex(control_tokens[i], std::regex("\\s*" + control[i] + "\\s*")));
   }
+
+  // bool literals
+  vec.push_back(token_regex(TokenType::t_literal_bool, "\\s*(true)|(false)\\s*"));
 
   // string literals
   vec.push_back(token_regex(TokenType::t_literal_string, "\\s*\"([^\\\"]|(\\[\\\"abefnrtv]))*\"\\s*"));

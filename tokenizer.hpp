@@ -57,22 +57,24 @@ std::vector<Token> Tokenizer::second_pass(const std::vector<Token>& first_res) {
   std::vector<Token> second_res;
   second_res.reserve(first_res.size());
 
-  Token context;
-  Token current;
   if (first_res.size() > 0) {
-    Token t(first_res[0].get_type(), strip_(first_res[0].get_lexeme()));
-    second_res.push_back(t);
-  }
+    Token current;
+    for (size_t i = 0; i < first_res.size(); i++) {
+      current = first_res[i];
+      std::string l = strip_(current.get_lexeme());
+      Token t(current.get_type(), l);
 
-  for (size_t i = 1; i < first_res.size(); i++) {
-    context = second_res[i - 1];
-    current = first_res[i];
-    std::string l = strip_(current.get_lexeme());
+      if (l == '*') {
+        if (i == 0) {
+          t = Token(TokenType::t_dereference, l);
+        } else if (second_res.back().is_type()) {
+          t = Token(TokenType::)
+        }
+      }
 
 
-
-    Token t(current.get_type(), l);
-    second_res.push_back(t);
+      second_res.push_back(t);
+    }
   }
 
   return second_res;
