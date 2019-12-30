@@ -30,7 +30,7 @@ int main(int argc, char const *argv[]) {
     Tokenizer tk;
     std::vector<Token> tokens = tk.tokenize(str);
     for (Token t : tokens) {
-      std::cout << t.get_lexeme() << '\n';
+      std::cout << (int) t.get_type() << ":\t" << t.get_lexeme() << '\n';
     }
   }
 

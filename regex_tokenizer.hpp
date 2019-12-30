@@ -44,15 +44,17 @@ Token RegexTokenizer::get_token(const std::string& str) {
       }
     }
     if (candidates.size() == 0) {
-      Token t(old_candidates[0], old_sub);
-      return t;
+      if (old_candidates.size() != 0) {
+        Token t(old_candidates[0], old_sub);
+        return t;
+      }
     }
   }
   if (candidates.size() != 0) {
     Token t(candidates[0], sub);
     return t;
   }
-  Token t(TokenType::t_null, old_sub);
+  Token t(TokenType::t_null, sub);
   return t;
 }
 

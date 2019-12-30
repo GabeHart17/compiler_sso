@@ -121,12 +121,12 @@ RegexTokenizer* create_tokenizer() {
   vec.push_back(token_regex(TokenType::t_literal_bool, "\\s*(true)|(false)\\s*"));
 
   // string literals
-  vec.push_back(token_regex(TokenType::t_literal_string, "\\s*\"([^\\\"]|(\\[\\\"abefnrtv]))*\"\\s*"));
-  vec.push_back(token_regex(TokenType::t_literal_string_start, "\\s*\"([^\\\"]|(\\[\\\"abefnrtv]))*"));
+  vec.push_back(token_regex(TokenType::t_literal_string, "\\s*\"([^\\\\\"]|(\\\\[\\\\\"abfnrtv]))*\"\\s*"));
+  vec.push_back(token_regex(TokenType::t_literal_string_start, "\\s*\"([^\"]|(\\\\[\\\\\"abfnrtv]))*"));
 
   // char literals
-  vec.push_back(token_regex(TokenType::t_literal_char, "\\*s'([^\\\']|(\\[\\'abefnrtv]))'\\s*"));
-  vec.push_back(token_regex(TokenType::t_literal_char_start, "\\*s'([^\\\']|(\\[\\'abefnrtv]))?"));
+  vec.push_back(token_regex(TokenType::t_literal_char, "\\s*'([^\\\\']|(\\\\[\\\\\'abfnrtv]))'\\s*"));
+  vec.push_back(token_regex(TokenType::t_literal_char_start, "\\s*'([^']|(\\\\[\\\\\'abfnrtv]))?"));
 
   // int literals
   vec.push_back(token_regex(TokenType::t_literal_int, "\\s*\\d+\\s*"));

@@ -1,6 +1,7 @@
 int main(int argc, char** argv) {
 	puts("Hello, world!\n");
 	for (int i = 0; i < 10; i++) {
-		puts(i);
+		putc((char) (97 + i));
 	}
+	putc('\n');
 }

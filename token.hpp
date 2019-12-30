@@ -32,6 +32,7 @@ enum class TokenType {
   t_char,
   t_int,
   t_float,
+  t_pointer,  // fix later, generic pointer type
 
   // identifiers
   t_ident,
@@ -48,7 +49,6 @@ enum class TokenType {
   t_literal_string_start,  // excludes closing "
 
   // variable declaration and assignment
-  t_type,
   t_array, // []
   t_assign,
   t_bracket_left,
@@ -106,9 +106,17 @@ public:
   }
 
   bool is_type() {  // if this token names a type
-    return type == TokenType::t_char ||
-           type == TokenType::t_float ||
-           type == TokenType::t_int;
+    return type_ == TokenType::t_char ||
+           type_ == TokenType::t_float ||
+           type_ == TokenType::t_int ||
+           type_ == TokenType::t_pointer;
+  }
+
+  bool is_numeric_literal() {
+    return type_ == TokenType::t_literal_int ||
+           type_ == TokenType::t_literal_bool ||
+           type_ == TokenType::t_literal_char ||
+           type_ == TokenType::t_literal_float;
   }
 };
 

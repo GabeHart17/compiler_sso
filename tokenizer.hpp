@@ -64,12 +64,20 @@ std::vector<Token> Tokenizer::second_pass(const std::vector<Token>& first_res) {
       std::string l = strip_(current.get_lexeme());
       Token t(current.get_type(), l);
 
-      if (l == '*') {
+      if (l == "*") {
         if (i == 0) {
           t = Token(TokenType::t_dereference, l);
         } else if (second_res.back().is_type()) {
-          t = Token(TokenType::)
-        }
+          t = Token(TokenType::t_pointer, second_res.back().get_lexeme() + "*");
+          second_res.pop_back();
+        } else if (second_res.back().is_numeric_literal() ||
+                   second_res.back().get_type() == TokenType::t_paren_right  ||
+                   second_res.back().get_type() == TokenType::t_bracket_right ||
+                   second_res.back().get_type() == TokenType::t_ident) {
+         t = Token(TokenType::t_multiply, "*");
+       } else {
+         t = Token(TokenType::t_dereference, "*");
+       }
       }
 
 
