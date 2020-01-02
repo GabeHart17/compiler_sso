@@ -75,9 +75,21 @@ std::vector<Token> Tokenizer::second_pass(const std::vector<Token>& first_res) {
                    second_res.back().get_type() == TokenType::t_bracket_right ||
                    second_res.back().get_type() == TokenType::t_ident) {
          t = Token(TokenType::t_multiply, "*");
-       } else {
+        } else {
          t = Token(TokenType::t_dereference, "*");
-       }
+        }
+      }
+
+      if (current.get_type() == TokenType::t_paren_right) {
+        if (second_res.size() >= 2) {
+          if (second_res.back().is_type() &&
+              (second_res.end() - 2)->get_type() == TokenType::t_paren_left) {
+            t = Token(TokenType::t_cast,
+                      "(" + second_res.back().get_lexeme() + ")");
+            second_res.pop_back();
+            second_res.pop_back();  // yes, this is supposed to happen twice
+          }
+        }
       }
 
 

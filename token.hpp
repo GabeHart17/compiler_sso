@@ -77,7 +77,8 @@ enum class TokenType {
   t_reference,
   t_dereference,
   t_increment,
-  t_decrement
+  t_decrement,
+  t_cast
 };
 
 
