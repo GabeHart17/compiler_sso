@@ -96,12 +96,13 @@ std::vector<Token> Tokenizer::second_pass(const std::vector<Token>& first_res) {
         if (i == 0) {
           t = Token(TokenType::t_reference, "&");
         } else if (second_res.back().is_numeric_literal() ||
+                   second_res.back().get_type() == TokenType::t_literal_string ||
                    second_res.back().get_type() == TokenType::t_paren_right  ||
                    second_res.back().get_type() == TokenType::t_bracket_right ||
                    second_res.back().get_type() == TokenType::t_ident) {
          t = Token(TokenType::t_bitwise_and, "&");
        } else {
-         t = Token(TokenType::t_bitwise_and, "&");
+         t = Token(TokenType::t_reference, "&");
        }
       }
 
