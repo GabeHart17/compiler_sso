@@ -1,0 +1,25 @@
+2019-11-20
+pre:
+- rewrite lexer to perform tokenization simultaneously
+- char set?
+- nfa vs dfa
+  - dfa req char set
+  - nfa more runtime intensive
+-
+
+post:
+- char set: all of ascii
+- if time features:
+  - unsigned
+  - ternary
+  - switch
+  - preprocesor directives
+  - struct
+  - union
+- prefix tree (trie)
+
+
+2019-12-11
+- allow any amount of leading and trailing whitespace after token
+- second pass looking at pairs to handle context
+- valid floats: 0.0, .0, 0.

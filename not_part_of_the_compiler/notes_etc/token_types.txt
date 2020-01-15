@@ -1,0 +1,73 @@
+KEYWORDS:
+continue
+break
+else
+for
+if
+return
+while
+
+TYPE NAMES:
+bool
+float
+double
+char
+short
+int
+long
+void
+
+IDENTIFIERS AND LITERALS:
+identifier
+bool literal
+char literal
+float literal
+int literal
+
+DELIMITERS:
+{
+}
+(
+)
+,
+;
+
+ACCESS AND ASSIGNMENT:
+=
+*
+&
+[
+]
+
+COMPARISON OPERATORS:
+>
+<
+>=
+<=
+==
+!=
+
+BOOLEAN OPERATORS:
+!
+&&
+||
+
+ARITHMETIC OPERATORS:
++
+-
+*
+/
+%
+
+BITWISE OPERATORS:
+&
+|
+~
+^
+<<
+>>
+
+COMMENTS:
+//
+/*
+*/

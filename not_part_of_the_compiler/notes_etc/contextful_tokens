@@ -1,0 +1,11 @@
+{
+lexeme: *
+
+tokens: {
+  TokType::t_multiply {
+    TokType::identifier TokType::t_multiply
+  }
+  TokType::t_dereference,
+}
+
+}
