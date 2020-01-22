@@ -1,0 +1,17 @@
+These are simple implementations of various parsing algorithms designed to
+parse arithmetic expressions with the following grammar:
+
+E := F
+E := E + F
+F := F * T
+F := T
+T := int
+T := (E)
+
+equivalent:
+
+E := F
+E := E + F
+F := (E)
+F := F * F
+F := int
