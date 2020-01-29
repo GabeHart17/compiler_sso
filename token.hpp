@@ -79,7 +79,22 @@ enum class TokenType {
   t_increment,
   t_decrement,
   t_cast
+
+
+  // nonterminals
+  PROGRAM = 1000,
+  BLOCK,
+  EXPR,
+  STMT,
+  STMTS,
+  CONDITION,
+  ELSE_BLOCKS,
+  // TODO: finish
 };
+
+bool is_terminal(TokenType n) {
+  return (int) n < 1000;
+}
 
 
 class Token {

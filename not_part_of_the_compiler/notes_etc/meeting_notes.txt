@@ -23,3 +23,8 @@ post:
 - allow any amount of leading and trailing whitespace after token
 - second pass looking at pairs to handle context
 - valid floats: 0.0, .0, 0.
+
+2020-01-29
+- use MIPS assembly
+  - run in MARS
+  - easier/simpler than X86-64 or ARM
