@@ -1,8 +1,8 @@
-PROGRAM := FUNCTION FUNCTION
+PROGRAM := FUNCTION PROGRAM
 FUNCTION := VAR_DECL t_paren_left F_DECL_ARGS t_paren_right BLOCK | epsilon
 VAR_DECL := TYPE_NAME t_ident
 F_DECL_ARGS := ARG_DECLS | epsilon
-ARG_DECLS := VAR_DECL | VAR_DECL t_coma ARG_DECLS
+ARG_DECLS := VAR_DECL t_coma ARG_DECLS | VAR_DECL
 BLOCK := t_curly_left STATEMENTS t_curly_right | STATEMENT t_semicolon
 STATEMENTS := STATEMENT t_semicolon STATEMENTS | t_ident t_increment | t_increment t_ident |
               t_ident t_decrement | t_decrement t_ident | epsilon
