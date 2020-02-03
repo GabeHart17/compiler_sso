@@ -78,7 +78,7 @@ enum class TokenType {
   t_dereference,
   t_increment,
   t_decrement,
-  t_cast
+  t_cast,
 
 
   // nonterminals
@@ -103,14 +103,9 @@ private:
   std::string lexeme_;
 
 public:
-  Token() {
-    type_ = TokenType::t_generic;
-    lexeme_ = "";
-  }
-  Token (TokenType t, std::string l) {
-    type_ = t;
-    lexeme_ = l;
-  }
+  Token() : type_(TokenType::t_generic), lexeme_("") {}
+  Token(TokenType t) : type_(t), lexeme_("") {}
+  Token (TokenType t, std::string l) : type_(t), lexeme_(l) {}
   ~Token () {}
 
   TokenType get_type() const {
@@ -121,18 +116,22 @@ public:
     return lexeme_;
   }
 
-  bool is_type() {  // if this token names a type
+  bool is_type() const {  // if this token names a type
     return type_ == TokenType::t_char ||
            type_ == TokenType::t_float ||
            type_ == TokenType::t_int ||
            type_ == TokenType::t_pointer;
   }
 
-  bool is_numeric_literal() {
+  bool is_numeric_literal() const {
     return type_ == TokenType::t_literal_int ||
            type_ == TokenType::t_literal_bool ||
            type_ == TokenType::t_literal_char ||
            type_ == TokenType::t_literal_float;
+  }
+
+  bool is_terminal() const {
+    return (int) type_ < 1000;
   }
 };
 

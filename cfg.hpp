@@ -11,5 +11,7 @@ public:
   Production(TokenType l, std::vector<TokenType> r) : left(l), right(r) {}
 };
 
+typedef std::vector<Production> Grammar;
+
 
 #endif

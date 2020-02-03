@@ -7,7 +7,6 @@
 #include "cfg.hpp"
 #include "token.hpp"
 
-typedef std::vector<Production> Grammar;
 
 class RDParser {
 private:
@@ -40,7 +39,14 @@ bool RDParser::terminal_(TokenType n) {
 }
 
 bool RDParser::production_(Production p) {
-
+  for (TokenType t : p.right) {
+    if (is_terminal(t)) {
+      if (!terminal_(t)) return false;
+    } else {
+      if (!all_productions_(t)) return false;
+    }
+  }
+  return true;
 }
 
 bool RDParser::all_productions_(TokenType n) {
@@ -55,6 +61,7 @@ bool RDParser::all_productions_(TokenType n) {
 
 TreeNode RDParser::operator()(const std::vector<Token>& tokens) {
   next_ = tokens.begin();
+
 }
 
 
