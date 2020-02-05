@@ -15,8 +15,8 @@ private:
   std::vector<Token>::iterator next_;
   Grammar get_productions_(TokenType);
   bool terminal_(TokenType);
-  bool production_(Production);
-  bool all_productions_(TokenType);
+  TreeNode production_(Production);
+  TreeNode all_productions_(TokenType);
 
 public:
   RDParser(Grammar cfg, TokenType start_symbol) : cfg_(cfg), start_(start_symbol) {}
@@ -38,30 +38,43 @@ bool RDParser::terminal_(TokenType n) {
          next_++->get_type() == n;
 }
 
-bool RDParser::production_(Production p) {
+TreeNode RDParser::production_(Production p) {
+  TreeNode tn(Token(p.left));
+  if (p.right[0] == TokenType::epsilon) {
+    return TreeNode(Token(TokenType::epsilon));
+  }
   for (TokenType t : p.right) {
     if (is_terminal(t)) {
-      if (!terminal_(t)) return false;
+      if (terminal_(t)){
+        tn.add_child(TreeNode(*(next_-1)));
+      } else {
+        return TreeNode();
+      }
     } else {
-      if (!all_productions_(t)) return false;
+      TreeNode ap = all_productions_(t);
+      if (ap){
+        if (!ap.is_epsilon()) tn.add_child(TreeNode(Token(t)));
+      } else {
+        return TreeNode();
+      }
     }
   }
-  return true;
+  return tn;;
 }
 
-bool RDParser::all_productions_(TokenType n) {
+TreeNode RDParser::all_productions_(TokenType n) {
   std::vector<TokenType>::iterator s = next_;
   for (Production p : get_productions_(n)) {
-    bool res = production(p);
+    TreeNode res = production_(p);
     if (res) return res;
     next_ = s;
   }
-  return false;
+  return TreeNode();
 }
 
 TreeNode RDParser::operator()(const std::vector<Token>& tokens) {
   next_ = tokens.begin();
-
+  return all_productions_(start_);
 }
 
 

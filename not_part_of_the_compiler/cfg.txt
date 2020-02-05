@@ -1,15 +1,12 @@
-PROGRAM := FUNCTION PROGRAM
+PROGRAM := FUNCTION PROGRAM | VAR_DECL PROGRAM | epsilon
 FUNCTION := VAR_DECL t_paren_left F_DECL_ARGS t_paren_right BLOCK | epsilon
 VAR_DECL := TYPE_NAME t_ident
 F_DECL_ARGS := ARG_DECLS | epsilon
 ARG_DECLS := VAR_DECL t_coma ARG_DECLS | VAR_DECL
 BLOCK := t_curly_left STATEMENTS t_curly_right | STATEMENT t_semicolon
-STATEMENTS := STATEMENT t_semicolon STATEMENTS | t_ident t_increment | t_increment t_ident |
-              t_ident t_decrement | t_decrement t_ident | epsilon
+STATEMENTS := STATEMENT t_semicolon STATEMENTS | t_ident t_increment | t_increment t_ident | t_ident t_decrement | t_decrement t_ident | epsilon
 STATEMENT := VAR_DECL | VAR_DECL t_assign EXPR | CONDITION | LOOP | FUNCTION_CALL
-EXPR := R_VALUE | EXPR BIN_OP EXPR | UN_OP EXPR | t_paren_left EXPR t_paren_right | FUNCTION_CALL |
-        L_VALUE t_increment | t_increment L_VALUE | L_VALUE t_decrement | t_decrement L_VALUE |
-        L_VALUE t_assign EXPR |
+EXPR := R_VALUE | EXPR BIN_OP EXPR | UN_OP EXPR | t_paren_left EXPR t_paren_right | FUNCTION_CALL | L_VALUE t_increment | t_increment L_VALUE | L_VALUE t_decrement | t_decrement L_VALUE | L_VALUE t_assign EXPR |
 CONDITION := t_if t_paren_left EXPR t_paren_right BLOCK ELSE_BLOCKS
 ELSE_BLOCKS := t_else BLOCK | t_else CONDITION
 FUNCTION_CALL := t_ident t_paren_left F_CALL_ARGS t_paren_right
@@ -22,7 +19,7 @@ FOR_CONDITION := EXPR | epsilon
 WHILE_LOOP := t_while t_paren_left EXPR t_paren_right BLOCK
 TYPE_NAME := t_bool | t_char | t_float | t_int | t_pointer
 LITERAL := t_literal_bool | t_literal_char | t_literal_float | t_literal_int | t_literal_string
-UN_OP :=
-BIN_OP :=
+UN_OP := t_dereference
+BIN_OP := t_plus
 L_VALUE := t_ident | t_dereference t_ident | t_ident t_bracket_left EXPR t_bracket_right
 R_VALUE := L_VALUE | LITERAL

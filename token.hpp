@@ -4,7 +4,7 @@
 #include <string>
 
 enum class TokenType {
-  // used for invalid tokens
+  // used for invalid/empty tokens
   t_null,
 
   // generic, unassigned token type. Temporarily assigned to contextful tokens
@@ -82,7 +82,8 @@ enum class TokenType {
 
 
   // nonterminals
-  PROGRAM = 1000,
+  epsilon = 1000,
+  PROGRAM,
   BLOCK,
   EXPR,
   STMT,
@@ -103,7 +104,7 @@ private:
   std::string lexeme_;
 
 public:
-  Token() : type_(TokenType::t_generic), lexeme_("") {}
+  Token() : type_(TokenType::t_null), lexeme_("") {}
   Token(TokenType t) : type_(t), lexeme_("") {}
   Token (TokenType t, std::string l) : type_(t), lexeme_(l) {}
   ~Token () {}
