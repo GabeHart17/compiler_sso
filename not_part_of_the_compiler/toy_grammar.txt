@@ -1,0 +1,5 @@
+PROGRAM ::= EXPR
+EXPR ::= E2
+E0 ::= t_paren_left EXPR t_paren_right | t_literal_int
+E1 ::= E0 t_multiply E1 | E0
+E2 ::= E1 t_plus E2 | E1

@@ -4,8 +4,21 @@
 #define RD_PARSER_HEADER
 
 #include <vector>
+#include <iostream>
 #include "cfg.hpp"
 #include "token.hpp"
+#include "ast.hpp"
+
+
+void print_tree(TreeNode tn, unsigned int indent=0) {
+  for (int i = 0; i < indent; i++) {
+    std::cout << '|';
+  }
+  std::cout << (int) tn.get_token().get_type() << '\n';
+  for (int i = 0; i < tn.size(); i++) {
+    print_tree(tn[i], indent + 1);
+  }
+}
 
 
 class RDParser {
@@ -20,10 +33,11 @@ private:
 
 public:
   RDParser(Grammar cfg, TokenType start_symbol) : cfg_(cfg), start_(start_symbol) {}
-  TreeNode operator()(const std::vector<int>&);
+  TreeNode operator()(std::vector<Token>&);
 };
 
 Grammar RDParser::get_productions_(TokenType n) {
+  // std::cout << "retrieving productions of " << (int) n << "\n";
   Grammar g;
   for (Production p : cfg_) {
     if (p.left == n) {
@@ -34,11 +48,13 @@ Grammar RDParser::get_productions_(TokenType n) {
 }
 
 bool RDParser::terminal_(TokenType n) {
+  // std::cout << "terminal " << (int) n << "\n";
   return is_terminal(n) &&
          next_++->get_type() == n;
 }
 
 TreeNode RDParser::production_(Production p) {
+  // std::cout << "production of nonterminal " << (int) p.left << " with result:\n";
   TreeNode tn(Token(p.left));
   if (p.right[0] == TokenType::epsilon) {
     return TreeNode(Token(TokenType::epsilon));
@@ -52,19 +68,22 @@ TreeNode RDParser::production_(Production p) {
       }
     } else {
       TreeNode ap = all_productions_(t);
-      if (ap){
-        if (!ap.is_epsilon()) tn.add_child(TreeNode(Token(t)));
+      if (ap) {
+        if (!ap.is_epsilon()) tn.add_child(ap);
       } else {
         return TreeNode();
       }
     }
   }
-  return tn;;
+  // print_tree(tn);
+  return tn;
 }
 
 TreeNode RDParser::all_productions_(TokenType n) {
-  std::vector<TokenType>::iterator s = next_;
-  for (Production p : get_productions_(n)) {
+  // std::cout << "all productions of nonterminal " << (int) n << "\n";
+  std::vector<Token>::iterator s = next_;
+  Grammar g  = get_productions_(n);
+  for (Production p : g) {
     TreeNode res = production_(p);
     if (res) return res;
     next_ = s;
@@ -72,9 +91,10 @@ TreeNode RDParser::all_productions_(TokenType n) {
   return TreeNode();
 }
 
-TreeNode RDParser::operator()(const std::vector<Token>& tokens) {
+TreeNode RDParser::operator()(std::vector<Token>& tokens) {
   next_ = tokens.begin();
-  return all_productions_(start_);
+  TreeNode res = all_productions_(start_);
+  return res;
 }
 
 
