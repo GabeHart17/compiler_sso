@@ -7,8 +7,8 @@ BLOCK ::= t_curly_left STATEMENTS t_curly_right | STATEMENT t_semicolon
 STATEMENTS ::= STATEMENT t_semicolon STATEMENTS | epsilon
 STATEMENT ::= VAR_DECL | EXPR | VAR_DECL t_assign EXPR | CONDITION | LOOP | FUNCTION_CALL
 
-EXPR ::= L_VALUE t_assign EXPR | t_paren_right EXPR t_paren_left | E9
-E0 ::= L_VALUE t_increment | L_VALUE t_decrement | R_VALUE
+EXPR ::= L_VALUE t_assign EXPR | E9
+E0 ::= t_paren_right EXPR t_paren_left | L_VALUE t_increment | L_VALUE t_decrement | R_VALUE
 E1 ::= t_increment L_VALUE | t_decrement L_VALUE | t_minus EXPR | t_not EXPR | t_bitwise_not EXPR | t_cast EXPR | t_dereference EXPR | t_reference EXPR | E0
 E2 ::= E1 t_multiply EXPR | E1 t_divide EXPR | E1 t_modulo EXPR | E1
 E3 ::= E2 t_plus EXPR | E2 t_minus EXPR | E2

@@ -12,11 +12,23 @@
 
 void print_tree(TreeNode tn, unsigned int indent=0) {
   for (int i = 0; i < indent; i++) {
-    std::cout << '|';
+    std::cout << "  ";
   }
   std::cout << (int) tn.get_token().get_type() << '\n';
+  if (tn.size() > 0) {
+    for (int i = 0; i < indent; i++) {
+      std::cout << "  ";
+    }
+    std::cout << "{\n";
+  }
   for (int i = 0; i < tn.size(); i++) {
     print_tree(tn[i], indent + 1);
+  }
+  if (tn.size() > 0) {
+    for (int i = 0; i < indent; i++) {
+      std::cout << "  ";
+    }
+    std::cout << "}\n";
   }
 }
 

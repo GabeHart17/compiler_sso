@@ -1,6 +1,3 @@
-// rename to `create_grammar.hpp` in order to use
-
-
 #ifndef CREATE_GRAMMAR_HEADER
 #define CREATE_GRAMMAR_HEADER
 #include "token.hpp"
@@ -134,15 +131,15 @@ Production p20(TokenType::EXPR, v20);
 g.push_back(p20);
 
 std::vector<TokenType> v21;
-v21.push_back(TokenType::t_paren_right);
-v21.push_back(TokenType::EXPR);
-v21.push_back(TokenType::t_paren_left);
+v21.push_back(TokenType::E9);
 Production p21(TokenType::EXPR, v21);
 g.push_back(p21);
 
 std::vector<TokenType> v22;
-v22.push_back(TokenType::E9);
-Production p22(TokenType::EXPR, v22);
+v22.push_back(TokenType::t_paren_right);
+v22.push_back(TokenType::EXPR);
+v22.push_back(TokenType::t_paren_left);
+Production p22(TokenType::E0, v22);
 g.push_back(p22);
 
 std::vector<TokenType> v23;
