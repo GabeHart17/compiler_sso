@@ -1,0 +1,10 @@
+PROGRAM ::= STATEMENTS | epsilon
+STATEMENTS ::= STATEMENT STATEMENTS | epsilon
+STATEMENT ::= EXPR t_semicolon
+
+EXPR ::= E2
+E0 ::= t_paren_left EXPR t_paren_right | R_VALUE
+E1 ::= E0 t_multiply E1 | E0
+E2 ::= E1 t_plus E2 | E1
+
+R_VALUE ::= t_literal_int | t_literal_float | t_ident

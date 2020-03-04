@@ -49,7 +49,6 @@ public:
 };
 
 Grammar RDParser::get_productions_(TokenType n) {
-  // std::cout << "retrieving productions of " << (int) n << "\n";
   Grammar g;
   for (Production p : cfg_) {
     if (p.left == n) {
@@ -60,13 +59,14 @@ Grammar RDParser::get_productions_(TokenType n) {
 }
 
 bool RDParser::terminal_(TokenType n) {
-  // std::cout << "terminal " << (int) n << "\n";
   return is_terminal(n) &&
          next_++->get_type() == n;
 }
 
+unsigned int counter = 0;
+
 TreeNode RDParser::production_(Production p) {
-  // std::cout << "production of nonterminal " << (int) p.left << " with result:\n";
+  unsigned int c = counter++;
   TreeNode tn(Token(p.left));
   if (p.right[0] == TokenType::epsilon) {
     return TreeNode(Token(TokenType::epsilon));
@@ -87,17 +87,17 @@ TreeNode RDParser::production_(Production p) {
       }
     }
   }
-  // print_tree(tn);
   return tn;
 }
 
 TreeNode RDParser::all_productions_(TokenType n) {
-  // std::cout << "all productions of nonterminal " << (int) n << "\n";
   std::vector<Token>::iterator s = next_;
   Grammar g  = get_productions_(n);
   for (Production p : g) {
     TreeNode res = production_(p);
-    if (res) return res;
+    if (res) {
+      return res;
+    }
     next_ = s;
   }
   return TreeNode();

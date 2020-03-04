@@ -10,6 +10,11 @@ in the header, all terminals and nonterminals are assumed to belong to a namespa
 import sys
 
 
+if len(sys.argv) != 3:
+    print("correct usage is:")
+    print("python3 grammar_generator.py input_file output_file")
+    sys.exit()
+
 vector_id = 0
 production_id = 0
 
