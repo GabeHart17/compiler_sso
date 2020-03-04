@@ -28,3 +28,10 @@ post:
 - use MIPS assembly
   - run in MARS
   - easier/simpler than X86-64 or ARM
+
+2020-03-04
+pre:
+- parser is *very* slow
+  - parsing simple_test_3 took in the neighborhood of 5 minutes when -O3
+    - 4:16.51 CPU time
+  - how problematic?

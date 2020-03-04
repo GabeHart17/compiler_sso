@@ -18,4 +18,4 @@ E11 ::= E10 t_or E11 | E10
 E12 ::= E11 t_assign E12 | E11
 
 
-R_VALUE ::= t_literal_int
+R_VALUE ::= t_literal_int | t_literal_float | t_ident
