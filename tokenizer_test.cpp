@@ -28,7 +28,7 @@ int main(int argc, char const *argv[]) {
 
     std::string str = in_stream.str();
     Tokenizer tk;
-    std::vector<Token> tokens = tk.tokenize(str);
+    std::vector<Token> tokens = tk(str);
     for (Token t : tokens) {
       std::cout << (int) t.get_type() << ":\t" << t.get_lexeme() << '\n';
     }
