@@ -5,44 +5,44 @@
 
 enum class TokenType {
   // used for invalid/empty tokens
-  t_null, // 0
+  t_null = 0,
 
   // generic, unassigned token type. Temporarily assigned to contextful tokens
-  t_generic, // 1
+  t_generic,
 
   // formatting and blocks
-  t_semicolon, // 2
+  t_semicolon = 100,
   t_curly_left,
   t_curly_right,
   t_paren_left,
   t_paren_right,
-  t_coma, // 7
+  t_coma,
 
   //reserved keywords
-  t_if, // 8
+  t_if = 200,
   t_else,
   t_while,
   t_for,
   t_break,
   t_continue,
-  t_return, // 14
+  t_return,
 
   // type names
-  t_bool, // 15
+  t_bool = 300,
   t_char,
   t_int,
   t_float,
   t_pointer,  // 19
 
   // identifiers
-  t_ident, // 20
+  t_ident,
 
   // literals
-  t_literal_bool, // 21
+  t_literal_bool = 400,
   t_literal_char,
   t_literal_string,
   t_literal_int,
-  t_literal_float, // 25
+  t_literal_float,
 
   // partial literals. needed for first pass, but will never appear in output
   t_literal_char_start,  // excludes closing '
@@ -50,12 +50,12 @@ enum class TokenType {
 
   // variable declaration and assignment
   t_array, // []
-  t_assign, // 29
+  t_assign,
   t_bracket_left,
   t_bracket_right,
 
   // binary operators
-  t_plus, // 32
+  t_plus = 500,
   t_minus,
   t_multiply,
   t_divide,
@@ -69,16 +69,16 @@ enum class TokenType {
   t_and,
   t_or,
   t_bitwise_and,
-  t_bitwise_or, // 46
+  t_bitwise_or,
 
   // unary operators
-  t_not, // 47
+  t_not = 600,
   t_bitwise_not,
   t_reference,
   t_dereference,
   t_increment,
   t_decrement,
-  t_cast, // 53
+  t_cast,
 
 
   // nonterminals
