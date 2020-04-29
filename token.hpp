@@ -10,6 +10,9 @@ enum class TokenType {
   // generic, unassigned token type. Temporarily assigned to contextful tokens
   t_generic,
 
+  // end of file
+  t_eof,
+
   // formatting and blocks
   t_semicolon = 100,
   t_curly_left,
@@ -105,14 +108,19 @@ enum class TokenType {
   E10, // 1020
   E11,
   E12,
+  U1,
+  B2,
+  B3,
+  B5,
+  B6,
   CONDITION,
   ELSE_BLOCKS,
-  FUNCTION_CALL,
+  FUNCTION_CALL, // 1030
   CALL_ARGS,
   LOOP,
   FOR_LOOP,
   FOR_STATEMENT,
-  FOR_CONDITION,// 1030
+  FOR_CONDITION,
   WHILE_LOOP,
   TYPE_NAME,
   L_VALUE,

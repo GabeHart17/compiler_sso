@@ -115,7 +115,9 @@ std::vector<Token> Tokenizer::second_pass(const std::vector<Token>& first_res) {
 
 
 std::vector<Token> Tokenizer::operator()(std::string str) {
-  return second_pass(first_pass(str));
+  std::vector<Token> res = second_pass(first_pass(str));
+  res.push_back(TokenType::t_eof);
+  return res;
 }
 
 
