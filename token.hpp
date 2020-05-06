@@ -35,7 +35,7 @@ enum class TokenType {
   t_char,
   t_int,
   t_float,
-  t_pointer,  // 19
+  t_pointer,
 
   // identifiers
   t_ident,
@@ -94,8 +94,9 @@ enum class TokenType {
   BLOCK,
   STATEMENTS,
   STATEMENT,
-  EXPR,
-  E0, // 1010
+  STATEMENT_BODY,
+  EXPR, // 1010
+  E0,
   E1,
   E2,
   E3,
@@ -104,24 +105,27 @@ enum class TokenType {
   E6,
   E7,
   E8,
-  E9,
-  E10, // 1020
+  E9, // 1020
+  E10,
   E11,
   E12,
   U1,
+  S1,
   B2,
   B3,
   B5,
   B6,
+  O12, // 1030
   CONDITION,
   ELSE_BLOCKS,
-  FUNCTION_CALL, // 1030
+  FUNCTION_CALL,
   CALL_ARGS,
+  CALL_ARGS_S,
   LOOP,
   FOR_LOOP,
   FOR_STATEMENT,
   FOR_CONDITION,
-  WHILE_LOOP,
+  WHILE_LOOP,  // 1040
   TYPE_NAME,
   L_VALUE,
   R_VALUE,

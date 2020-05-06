@@ -1,0 +1,10 @@
+int main(int argc, char** argv) {
+  bool foo = 5 < 3;
+  if (5) {
+    putc('a');
+  } else if (7 <= 3 - 1) {
+    foo = false;
+  } else {
+    puts("hi\n");
+  }
+}

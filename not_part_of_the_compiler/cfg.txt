@@ -5,11 +5,12 @@ F_DECL_ARGS ::= ARG_DECLS | epsilon
 ARG_DECLS ::= VAR_DECL t_coma ARG_DECLS | VAR_DECL
 BLOCK ::= t_curly_left STATEMENTS t_curly_right | STATEMENT t_semicolon
 STATEMENTS ::= STATEMENT STATEMENTS | epsilon
-STATEMENT ::= EXPR t_semicolon
+STATEMENT ::= t_return EXPR t_semicolon | t_break t_semicolon | CONDITION | LOOP | STATEMENT_BODY t_semicolon
+STATEMENT_BODY ::= EXPR | VAR_DECL
 
 EXPR ::= E12
-E0 ::= t_paren_left EXPR t_paren_right | R_VALUE
-E1 ::= U1 E1 | E0
+E0 ::= t_paren_left EXPR t_paren_right | FUNCTION_CALL | R_VALUE
+E1 ::= U1 E1 | E0 S1
 E2 ::= E1 B2 E2 | E1
 E3 ::= E2 B3 E3 | E2
 E4 ::= E3
@@ -20,13 +21,26 @@ E8 ::= E7
 E9 ::= E8 t_bitwise_or E9 | E8
 E10 ::= E9 t_and E10 | E9
 E11 ::= E10 t_or E11 | E10
-E12 ::= E11 t_assign E12 | E11
+E12 ::= O12 t_assign E12 | E11
 
 U1 ::= t_increment | t_decrement | t_not | t_bitwise_not | t_cast | t_dereference | t_reference
+S1 ::= t_increment | t_decrement | epsilon
 B2 ::= t_multiply | t_divide | t_modulo
 B3 ::= t_plus | t_minus
 B5 ::= t_less_than | t_greater_than | t_lt_or_eq | t_gt_or_eq
 B6 ::= t_equal | t_not_equal
+O12 ::= VAR_DECL | E11
+
+CONDITION ::= t_if t_paren_left EXPR t_paren_right BLOCK ELSE_BLOCKS
+ELSE_BLOCKS ::= t_else BLOCK | t_else CONDITION | epsilon
+FUNCTION_CALL ::= t_ident t_paren_left CALL_ARGS t_paren_right
+CALL_ARGS ::= EXPR CALL_ARGS_S | epsilon
+CALL_ARGS_S ::= t_coma CALL_ARGS | epsilon
+LOOP ::= FOR_LOOP | WHILE_LOOP
+FOR_LOOP ::= t_for t_paren_left FOR_STATEMENT t_semicolon FOR_CONDITION t_semicolon FOR_STATEMENT t_paren_right BLOCK
+FOR_STATEMENT ::= STATEMENT_BODY | epsilon
+FOR_CONDITION ::= EXPR | epsilon
+WHILE_LOOP ::= t_while t_paren_left EXPR t_paren_right BLOCK
 
 TYPE_NAME ::= t_bool | t_char | t_float | t_int | t_pointer
-R_VALUE ::= t_literal_int | t_literal_float | t_ident
+R_VALUE ::= t_literal_int | t_literal_float | t_literal_char | t_literal_string | t_literal_bool | t_ident
